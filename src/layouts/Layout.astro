@@ -1,5 +1,5 @@
 ---
-import { Player } from "@/components/Player";
+import { Player } from "@/components/player/Player";
 import AsideMenu from "../components/AsideMenu.astro";
 import { ViewTransitions } from "astro:transitions";
 
@@ -31,7 +31,7 @@ const { title } = Astro.props;
       <slot />
     </main>
 
-    <footer class="[grid-area:player] min-h-[100px]">
+    <footer class="[grid-area:player]">
       <Player client:load transition:name="media-player" transition:persist/>
     </footer>
     <style>
@@ -92,3 +92,4 @@ const { title } = Astro.props;
     </style>
   </body>
 </html>
+@/components/player/Player

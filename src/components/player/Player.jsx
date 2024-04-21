@@ -1,6 +1,7 @@
 import { usePlayerStore } from "@/store/playerStore";
 import { useEffect, useRef, useState } from "react";
-import { Slider } from "./Slider";
+import { Slider } from "../Slider";
+import VolumeControl from "./VolumeControl";
 
 export const Pause = ({ className }) => (
   <svg
@@ -44,8 +45,7 @@ export const Play = ({ className }) => (
 );
 
 export function Player() {
-  const { currentMusic, isPlaying, setIsPlaying } = usePlayerStore((state) => state);
-  const volumeRef = useRef(1);
+  const { currentMusic, isPlaying, setIsPlaying, volume } = usePlayerStore((state) => state);
   const audioRef = useRef();
 
   useEffect(() => {
@@ -60,6 +60,10 @@ export function Player() {
       audioRef.current.play();
     }
   }, [currentMusic]);
+
+  useEffect(() => {
+    audioRef.current.volume = volume;
+  }, [volume]);
 
   const handleClick = () => {
     setIsPlaying(!isPlaying);
@@ -80,17 +84,7 @@ export function Player() {
       </div>
 
       <div className="grid place-content-center text-white">
-        <Slider
-          defaultValue={[100]}
-          max={100}
-          min={0}
-          className="w-[95px]"
-          onValueChange={(value) => {
-            const newVolume = value[0] / 100;
-            volumeRef.current = newVolume;
-            audioRef.current.volume = newVolume;
-          }}
-        />
+        <VolumeControl />
       </div>
     </div>
   );
