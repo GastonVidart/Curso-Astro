@@ -1,7 +1,7 @@
 import { usePlayerStore } from "@/store/playerStore";
-import { useEffect, useRef, useState } from "react";
-import { Slider } from "../Slider";
+import { useEffect, useRef } from "react";
 import VolumeControl from "./VolumeControl";
+import SongControl from "./SongControl";
 
 export const Pause = ({ className }) => (
   <svg
@@ -78,6 +78,7 @@ export function Player() {
           <button className="bg-white rounded-full p-2" onClick={handleClick}>
             {isPlaying ? <Pause /> : <Play />}
           </button>
+          <SongControl audio={audioRef} />
           {/*control agrega los controles de audio nativos */}
           <audio ref={audioRef} />
         </div>
