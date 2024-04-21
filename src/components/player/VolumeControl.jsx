@@ -49,7 +49,7 @@ export default function VolumeControl() {
   };
 
   return (
-    <div className="flex justify-center gap-x-2 text-white">
+    <div className="flex justify-end gap-x-2 px-4 text-white">
       <button className="opacity-70 hover:opacity-100 transition" onClick={handleClickVolume}>
         {isMuted ? <VolumeSilence /> : <Volume />}
       </button>

@@ -18,8 +18,8 @@ export const Pause = ({ className }) => (
 
 const CurrentSong = ({ image, title, artists }) => {
   return (
-    <div className="flex items-center gap-4 relative overflow-hidden">
-      <picture className="w-16 h-16 bg-zinc-800 rounded-md shadow-lg overflow-hidden">
+    <div className="flex items-center gap-3 relative overflow-hidden px-1.5">
+      <picture className="w-14 h-14 bg-zinc-800 rounded-md shadow-lg overflow-hidden">
         <img src={image} alt={title} />
       </picture>
 
@@ -70,11 +70,13 @@ export function Player() {
   };
 
   return (
-    <div className="flex flex-row justify-between w-full px-4 z-50">
-      <CurrentSong {...currentMusic.song} />
+    <div className="flex flex-row justify-between w-full z-50 pt-1">
+      <div className="w-[200px]">
+        <CurrentSong {...currentMusic.song} />
+      </div>
 
-      <div className="grid place-content-center gap-4 flex-1 bg-red-300">
-        <div className="flex justify-center">
+      <div className="grid place-content-center gap-4 flex-1">
+        <div className="flex justify-center flex-col items-center">
           <button className="bg-white rounded-full p-2" onClick={handleClick}>
             {isPlaying ? <Pause /> : <Play />}
           </button>
@@ -84,7 +86,7 @@ export function Player() {
         </div>
       </div>
 
-      <div className="grid place-content-center text-white">
+      <div className="grid items-center justify-end w-[200px]">
         <VolumeControl />
       </div>
     </div>
